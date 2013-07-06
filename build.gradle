@@ -1,0 +1,31 @@
+apply {
+    plugin 'scala'
+    plugin 'eclipse'
+    plugin 'idea'
+}
+
+ext {
+    scalaVersion = '2.10.1'
+}
+
+configurations {
+    scalaLibrary
+    scalaCompiler
+}
+
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(ScalaCompile) {
+    scalaCompileOptions.useCompileDaemon = false
+    scalaCompileOptions.useAnt = false
+}
+
+dependencies {
+    scalaLibrary "org.scala-lang:scala-library:$scalaVersion"
+    scalaCompiler "org.scala-lang:scala-compiler:$scalaVersion"
+
+    compile "org.scala-lang:scala-library:$scalaVersion"
+}
+
