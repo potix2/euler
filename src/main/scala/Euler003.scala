@@ -1,17 +1,6 @@
+import Helper.primes
+
 object Euler003 extends App {
-  lazy val nats = {
-    def succ(n:Long):Stream[Long] = n #:: succ(n+1)
-    succ(2)
-  }
-
-  lazy val primes = {
-    def sieve(ls:Stream[Long]):Stream[Long] = {
-      lazy val h = ls.head
-      h #:: sieve(ls filter (_ % h > 0))
-    }
-    sieve(nats)
-  }
-
   def primeFactors(x:Long):List[Long] = {
     def p(x:Long, primes:Stream[Long]):List[Long] = x match {
       case 1 => Nil
